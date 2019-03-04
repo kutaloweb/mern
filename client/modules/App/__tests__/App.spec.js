@@ -5,17 +5,13 @@ import sinon from 'sinon';
 import { shallow, mount } from 'enzyme';
 import { App } from '../App';
 import styles from '../App.css';
-import { intlShape } from 'react-intl';
-import { intl } from '../../../util/react-intl-test-helper';
 import { toggleAddPost } from '../AppActions';
 
-const intlProp = { ...intl, enabledLanguages: ['en', 'fr'] };
 const children = <h1>Test</h1>;
 const dispatch = sinon.spy();
 const props = {
   children,
   dispatch,
-  intl: intlProp,
 };
 
 test('renders properly', t => {
@@ -47,11 +43,9 @@ test('calls componentDidMount', t => {
           setRouteLeaveHook: sinon.stub(),
           createHref: sinon.stub(),
         },
-        intl,
       },
       childContextTypes: {
         router: PropTypes.object,
-        intl: intlShape,
       },
     },
   );
