@@ -1,17 +1,10 @@
-.footer{
-  text-align: center;
-  padding: 56px 0;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background: url('../../header-bk.png') center;
   background-size: cover;
-}
-
-.footer p{
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  color: #FFF;
-}
-
-.footer a{
-  color: #FFF;
-  text-decoration: none;
-  font-weight: 700;
 }

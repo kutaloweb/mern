@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// Import Style
-import styles from './App.css';
-
 // Import Components
 import Helmet from 'react-helmet';
 import Header from './components/Header/Header';
@@ -48,7 +45,7 @@ export class App extends Component {
         <Header
           toggleAddPost={this.toggleAddPostSection}
         />
-        <div className={styles.container}>
+        <div className="container">
           {this.props.children}
         </div>
         <Footer />

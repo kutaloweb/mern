@@ -9,6 +9,9 @@ import { Router, browserHistory } from 'react-router';
 // Import Routes
 import routes from './routes';
 
+// Bootstrap stylesheet
+require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+
 // Base stylesheet
 require('./main.css');
 

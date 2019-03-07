@@ -18,14 +18,23 @@ export class PostCreateWidget extends Component {
   render() {
     const cls = `${styles.form} ${(this.props.showAddPost ? styles.appear : '')}`;
     return (
-      <div className={cls}>
-        <div className={styles['form-content']}>
-          <h2 className={styles['form-title']}>Create new post</h2>
-          <input placeholder="Author's name" className={styles['form-field']} ref="name" />
-          <input placeholder="Post title" className={styles['form-field']} ref="title" />
-          <textarea placeholder="Post content" className={styles['form-field']} ref="content" />
-          <a className={styles['post-submit-button']} href="#" onClick={this.addPost}>Submit</a>
-        </div>
+      <div className={`${cls} jumbotron my-3`}>
+        <h2>Create new post</h2>
+        <form>
+          <div className="form-group">
+            <label htmlFor="name">Author's name</label>
+            <input type="text" className="form-control" id="name" placeholder="Author's name" ref="name" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="title">Post title</label>
+            <input type="text" className="form-control" id="title" placeholder="Post title" ref="title" />
+          </div>
+          <div className="form-group">
+            <label htmlFor="content">Post content</label>
+            <textarea className="form-control" id="content" rows="3" placeholder="Post content" ref="content"></textarea>
+          </div>
+          <a className="btn btn-primary" href="#" onClick={this.addPost}>Submit</a>
+        </form>
       </div>
     );
   }

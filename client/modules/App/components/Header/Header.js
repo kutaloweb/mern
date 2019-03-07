@@ -5,20 +5,25 @@ import { Link } from 'react-router';
 // Import Style
 import styles from './Header.css';
 
+// Import Components
+import { Navbar, Nav } from 'react-bootstrap';
+
 export function Header(props, context) {
   return (
-    <div className={styles.header}>
-      <div className={styles.content}>
-        <h1 className={styles['site-title']}>
-          <Link to="/" >MERN Starter Blog</Link>
-        </h1>
-        {
-          context.router.isActive('/', true)
-            ? <a className={styles['add-post-button']} href="#" onClick={props.toggleAddPost}>Add Post</a>
-            : null
-        }
-      </div>
-    </div>
+    <header>
+      <Navbar bg="dark" variant="dark" expand="lg" className={styles.header}>
+        <Link className="navbar-brand" to="/">MERN Starter Blog</Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto" />
+          {
+            context.router.isActive('/', true)
+              ? <a className="btn btn-success" href="#" role="button" onClick={props.toggleAddPost}>Add Post</a>
+              : null
+          }
+        </Navbar.Collapse>
+      </Navbar>
+    </header>
   );
 }
 

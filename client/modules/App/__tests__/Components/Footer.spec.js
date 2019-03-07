@@ -8,5 +8,5 @@ test('renders the footer properly', t => {
     <Footer />
   );
 
-  t.is(wrapper.find('p').length, 1);
+  t.is(wrapper.find('span').length, 1);
 });
