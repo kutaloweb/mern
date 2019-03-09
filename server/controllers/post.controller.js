@@ -3,6 +3,9 @@ import cuid from 'cuid';
 import slug from 'limax';
 import sanitizeHtml from 'sanitize-html';
 
+// Validation
+const validatePostInput = require('../validation/post');
+
 /**
  * Get all posts
  * @param req
@@ -25,8 +28,12 @@ export function getPosts(req, res) {
  * @returns void
  */
 export function addPost(req, res) {
-  if (!req.body.post.name || !req.body.post.title || !req.body.post.content) {
-    res.status(403).end();
+  const { errors, isValid } = validatePostInput(req.body.post);
+  // Check Validation
+  if (!isValid) {
+    // If any errors, send 400 with errors object
+    res.status(403).json(errors);
+    return;
   }
 
   const newPost = new Post(req.body.post);
@@ -74,7 +81,7 @@ export function deletePost(req, res) {
     }
 
     post.remove(() => {
-      res.status(200).end();
+      res.status(200).send({ message: 'Post deleted', post });
     });
   });
 }

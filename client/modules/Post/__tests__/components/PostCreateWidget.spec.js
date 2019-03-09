@@ -54,12 +54,12 @@ test('calls addPost', t => {
   t.truthy(addPost.calledWith('David', 'Some Title', 'Bla Bla Bla'));
 });
 
-test('empty form doesn\'t call addPost', t => {
+test('empty form calls addPost in order to get validation errors', t => {
   const addPost = sinon.spy();
   const wrapper = mount(
     <PostCreateWidget addPost={addPost} showAddPost />
   );
 
   wrapper.find('a').first().simulate('click');
-  t.falsy(addPost.called);
+  t.truthy(addPost.called);
 });

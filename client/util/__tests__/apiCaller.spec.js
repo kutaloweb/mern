@@ -23,12 +23,12 @@ test('sends the body', t => {
   });
 });
 
-test('returns the error', t => {
+test('returns the error to promise catch handler', t => {
   const reply = { message: 'Errrrrrrrrr' };
   nock(API_URL)
     .get('/send_error')
     .reply(500, reply);
-  return callApi('send_error').then(error => {
+  return callApi('send_error').catch(error => {
     t.deepEqual(error, reply);
   });
 });
