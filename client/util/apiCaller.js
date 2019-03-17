@@ -5,9 +5,18 @@ export const API_URL = (typeof window === 'undefined' || process.env.NODE_ENV ==
   process.env.BASE_URL || (`http://localhost:${process.env.PORT || Config.port}/api`) :
   '/api';
 
-export default function callApi(endpoint, method = 'get', body) {
+export default function callApi(endpoint, method = 'get', body, withToken) {
+  let headers;
+  if (withToken) {
+    headers = {
+      'content-type': 'application/json',
+      Authorization: localStorage.getItem('jwtToken'),
+    };
+  } else {
+    headers = { 'content-type': 'application/json' };
+  }
   return fetch(`${API_URL}/${endpoint}`, {
-    headers: { 'content-type': 'application/json' },
+    headers,
     method,
     body: JSON.stringify(body),
   })

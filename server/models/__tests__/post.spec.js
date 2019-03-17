@@ -47,23 +47,16 @@ test.serial('Should send correct data when queried against a cuid', async t => {
   t.is(res.body.post.name, post.name);
 });
 
-test.serial('Should correctly add a post', async t => {
-  t.plan(2);
-
+test.serial('Should include authentication credentials to add new post', async t => {
   const res = await request(app)
     .post('/api/posts')
     .send({ post: { name: 'Foo', title: 'bar', content: 'Hello Mern says Foo' } })
     .set('Accept', 'application/json');
 
-  t.is(res.status, 200);
-
-  const savedPost = await Post.findOne({ title: 'bar' }).exec();
-  t.is(savedPost.name, 'Foo');
+  t.is(res.status, 401);
 });
 
-test.serial('Should correctly delete a post', async t => {
-  t.plan(2);
-
+test.serial('Should include authentication credentials to delete post', async t => {
   const post = new Post({ name: 'Foo', title: 'bar', slug: 'bar', cuid: 'f34gb2bh24b24b2', content: 'Hello Mern says Foo' });
   post.save();
 
@@ -71,8 +64,5 @@ test.serial('Should correctly delete a post', async t => {
     .delete(`/api/posts/${post.cuid}`)
     .set('Accept', 'application/json');
 
-  t.is(res.status, 200);
-
-  const queriedPost = await Post.findOne({ cuid: post.cuid }).exec();
-  t.is(queriedPost, null);
+  t.is(res.status, 401);
 });

@@ -29,8 +29,8 @@ export function addPostRequest(post) {
         name: post.name,
         title: post.title,
         content: post.content,
-      },
-    }).then(res => dispatch(addPost(res.post)))
+      } }, true)
+      .then(res => dispatch(addPost(res.post)))
       .catch(err =>
         dispatch({
           type: GET_ERRORS,
@@ -70,6 +70,6 @@ export function deletePost(cuid) {
 
 export function deletePostRequest(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`, 'delete').then(() => dispatch(deletePost(cuid)));
+    return callApi(`posts/${cuid}`, 'delete', {}, true).then(() => dispatch(deletePost(cuid)));
   };
 }

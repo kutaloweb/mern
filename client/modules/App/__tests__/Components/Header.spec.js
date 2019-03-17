@@ -9,7 +9,7 @@ test('renders the header properly', t => {
     isActive: sinon.stub().returns(true),
   };
   const wrapper = shallow(
-    <Header toggleAddPost={() => {}} />,
+    <Header toggleAddPost={() => {}} isAuthenticated />,
     {
       context: {
         router,
@@ -17,8 +17,7 @@ test('renders the header properly', t => {
     }
   );
 
-  t.truthy(wrapper.find('Link').first().text('MERN Starter Blog'));
-  t.is(wrapper.find('a').length, 1);
+  t.truthy(wrapper.find('Link').first().text('MERN Starter'));
 });
 
 test('doesn\'t add post in pages other than home', t => {
@@ -26,7 +25,7 @@ test('doesn\'t add post in pages other than home', t => {
     isActive: sinon.stub().returns(false),
   };
   const wrapper = shallow(
-    <Header toggleAddPost={() => {}} />,
+    <Header toggleAddPost={() => {}} isAuthenticated />,
     {
       context: {
         router,
@@ -43,7 +42,7 @@ test('toggleAddPost called properly', t => {
   };
   const toggleAddPost = sinon.spy();
   const wrapper = shallow(
-    <Header toggleAddPost={toggleAddPost} />,
+    <Header toggleAddPost={toggleAddPost} isAuthenticated />,
     {
       context: {
         router,

@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 
 // Import Actions
 import { toggleAddPost } from './AppActions';
+import { logout } from '../Auth/AuthActions';
 
 export class App extends Component {
   constructor(props) {
@@ -19,6 +20,10 @@ export class App extends Component {
   componentDidMount() {
     this.setState({isMounted: true}); // eslint-disable-line
   }
+
+  handleLogout = () => {
+    this.props.dispatch(logout());
+  };
 
   toggleAddPostSection = () => {
     this.props.dispatch(toggleAddPost());
@@ -44,6 +49,8 @@ export class App extends Component {
         />
         <Header
           toggleAddPost={this.toggleAddPostSection}
+          logout={this.handleLogout}
+          isAuthenticated={this.props.isAuthenticated}
         />
         <div className="container">
           {this.props.children}
@@ -57,6 +64,11 @@ export class App extends Component {
 App.propTypes = {
   children: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect()(App);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(App);
