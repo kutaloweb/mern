@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import callApi from '../../util/apiCaller';
-import { TOGGLE_ADD_POST } from '../App/AppActions';
+import { closeAddPost } from '../App/AppActions';
 
 // Export Constants
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
@@ -46,14 +46,8 @@ export function loginUser(userData) {
   };
 }
 
-export function toggleAddPost() {
-  return {
-    type: TOGGLE_ADD_POST,
-  };
-}
-
 export const logout = () => dispatch => {
   localStorage.removeItem('jwtToken');
   dispatch(setCurrentUser({}));
-  dispatch(toggleAddPost());
+  dispatch(closeAddPost());
 };
