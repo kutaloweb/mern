@@ -15,7 +15,7 @@ test('renders properly', t => {
     <PostListItem {...props} />
   );
 
-  t.truthy(wrapper.hasClass('single-post'));
+  t.truthy(wrapper.hasClass('card'));
   t.is(wrapper.find('Link').first().prop('children'), post.title);
   t.regex(wrapper.find('.author-name').first().text(), new RegExp(post.name));
   t.is(wrapper.find('.post-desc').first().text(), post.content);
@@ -37,6 +37,6 @@ test('calls onDelete', t => {
     <PostListItem post={post} onDelete={onDelete} />
   );
 
-  wrapper.find('.post-action > a').first().simulate('click');
+  wrapper.find('.btn-danger').first().simulate('click');
   t.truthy(onDelete.calledOnce);
 });

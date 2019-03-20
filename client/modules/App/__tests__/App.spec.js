@@ -22,8 +22,8 @@ test('renders properly', t => {
   t.is(wrapper.find('Header').length, 1);
   t.is(wrapper.find('Footer').length, 1);
   t.is(wrapper.find('Header').prop('toggleAddPost'), wrapper.instance().toggleAddPostSection);
-  t.truthy(wrapper.find('Header + div').hasClass('container'));
-  t.truthy(wrapper.find('Header + div').children(), children);
+  t.truthy(wrapper.find('Header + br + div').hasClass('container'));
+  t.truthy(wrapper.find('Header + br + div').children(), children);
 });
 
 test('calls componentDidMount', t => {

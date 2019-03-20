@@ -17,7 +17,7 @@ test('renders properly', t => {
   t.truthy(wrapper.hasClass('form'));
   t.truthy(wrapper.hasClass('appear'));
   t.truthy(wrapper.find('h2').first().text('Create new post'));
-  t.is(wrapper.find('input').length, 2);
+  t.is(wrapper.find('input').length, 1);
   t.is(wrapper.find('textarea').length, 1);
 });
 
@@ -45,13 +45,12 @@ test('calls addPost', t => {
     <PostCreateWidget addPost={addPost} showAddPost />
   );
 
-  wrapper.ref('name').value = 'David';
   wrapper.ref('title').value = 'Some Title';
   wrapper.ref('content').value = 'Bla Bla Bla';
 
   wrapper.find('a').first().simulate('click');
   t.truthy(addPost.calledOnce);
-  t.truthy(addPost.calledWith('David', 'Some Title', 'Bla Bla Bla'));
+  t.truthy(addPost.calledWith('Some Title', 'Bla Bla Bla'));
 });
 
 test('empty form calls addPost in order to get validation errors', t => {

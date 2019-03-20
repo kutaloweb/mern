@@ -54,8 +54,8 @@ Header.contextTypes = {
 };
 
 Header.propTypes = {
-  toggleAddPost: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+  toggleAddPost: PropTypes.func,
+  logout: PropTypes.func,
   isAuthenticated: PropTypes.bool,
 };
 
