@@ -55,6 +55,7 @@ export class App extends Component {
         <div className="container">
           {this.props.children}
         </div>
+        <br />
         <Footer />
       </div>
     );

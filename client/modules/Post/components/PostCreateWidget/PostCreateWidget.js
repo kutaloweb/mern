@@ -17,15 +17,14 @@ export class PostCreateWidget extends Component {
     if (newProps.errors) {
       this.setState({ errors: newProps.errors });
     } else {
-      this.refs.name.value = this.refs.title.value = this.refs.content.value = '';
+      this.refs.title.value = this.refs.content.value = '';
     }
   }
 
   addPost = () => {
-    const nameRef = this.refs.name;
     const titleRef = this.refs.title;
     const contentRef = this.refs.content;
-    this.props.addPost(nameRef.value, titleRef.value, contentRef.value);
+    this.props.addPost(titleRef.value, contentRef.value);
   };
 
   render() {
@@ -35,11 +34,6 @@ export class PostCreateWidget extends Component {
       <div className={`${cls} jumbotron my-3`}>
         <h2>Create new post</h2>
         <form>
-          <div className="form-group">
-            <label htmlFor="name">Author's name</label>
-            <input type="text" className={`form-control ${errors.name ? 'is-invalid' : ''}`} id="name" placeholder="Author's name" ref="name" />
-            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-          </div>
           <div className="form-group">
             <label htmlFor="title">Post title</label>
             <input type="text" className={`form-control ${errors.title ? 'is-invalid' : ''}`} id="title" placeholder="Post title" ref="title" />

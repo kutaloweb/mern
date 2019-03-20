@@ -24,8 +24,8 @@ class PostListPage extends Component {
     }
   };
 
-  handleAddPost = (name, title, content) => {
-    this.props.dispatch(addPostRequest({ name, title, content }));
+  handleAddPost = (title, content) => {
+    this.props.dispatch(addPostRequest({ title, content }));
   };
 
   render() {
@@ -51,7 +51,6 @@ function mapStateToProps(state) {
 
 PostListPage.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
   })).isRequired,

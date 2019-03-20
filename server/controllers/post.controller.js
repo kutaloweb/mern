@@ -31,7 +31,7 @@ export function addPost(req, res) {
   const { errors, isValid } = validatePostInput(req.body.post);
   // Check Validation
   if (!isValid) {
-    // If any errors, send 400 with errors object
+    // If any errors, send 403 with errors object
     res.status(403).json(errors);
     return;
   }
@@ -40,11 +40,12 @@ export function addPost(req, res) {
 
   // Let's sanitize inputs
   newPost.title = sanitizeHtml(newPost.title);
-  newPost.name = sanitizeHtml(newPost.name);
   newPost.content = sanitizeHtml(newPost.content);
 
   newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
   newPost.cuid = cuid();
+  newPost.user = req.user.id;
+  newPost.name = req.user.name;
   newPost.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
@@ -79,7 +80,10 @@ export function deletePost(req, res) {
     if (err) {
       res.status(500).send(err);
     }
-
+    // Check for post owner
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ notAuthorized: 'User not authorized' });
+    }
     post.remove(() => {
       res.status(200).send({ message: 'Post deleted', post });
     });
