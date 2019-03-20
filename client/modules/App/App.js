@@ -52,6 +52,7 @@ export class App extends Component {
           logout={this.handleLogout}
           isAuthenticated={this.props.isAuthenticated}
         />
+        <br />
         <div className="container">
           {this.props.children}
         </div>

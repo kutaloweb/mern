@@ -31,7 +31,7 @@ export class PostCreateWidget extends Component {
     const { errors } = this.state;
     const cls = `${styles.form} ${(this.props.showAddPost ? styles.appear : '')}`;
     return (
-      <div className={`${cls} jumbotron my-3`}>
+      <div className={`${cls} jumbotron`}>
         <h2>Create new post</h2>
         <form>
           <div className="form-group">
