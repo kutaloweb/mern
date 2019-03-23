@@ -54,7 +54,7 @@ class PostListPage extends Component {
       <div>
         <PostCreateWidget addPost={this.handleAddPost} showAddPost={this.props.showAddPost} />
 
-        <PostList handleDeletePost={this.handleSelectedPost} posts={this.props.posts} />
+        <PostList handleDeletePost={this.handleSelectedPost} posts={this.props.posts} currentUser={this.props.currentUser} />
 
         <Modal show={showDeleteModal} onHide={this.handleCloseDeleteModal}>
           <Modal.Header closeButton>
@@ -83,6 +83,7 @@ function mapStateToProps(state) {
   return {
     showAddPost: getShowAddPost(state),
     posts: getPosts(state),
+    currentUser: state.auth.user,
   };
 }
 
@@ -93,6 +94,7 @@ PostListPage.propTypes = {
   })).isRequired,
   showAddPost: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
 
 PostListPage.contextTypes = {

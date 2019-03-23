@@ -12,6 +12,7 @@ function PostList(props) {
           <PostListItem
             post={post}
             key={post.cuid}
+            currentUser={props.currentUser}
             onDelete={() => props.handleDeletePost(post.cuid)}
           />
         ))
@@ -27,8 +28,10 @@ PostList.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
   })).isRequired,
   handleDeletePost: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
 
 export default PostList;

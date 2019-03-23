@@ -4,9 +4,11 @@ import sinon from 'sinon';
 import PostListItem from '../../components/PostListItem/PostListItem';
 import { shallow, mount } from 'enzyme';
 
-const post = { name: 'Prashant', title: 'Hello Mern', slug: 'hello-mern', cuid: 'f34gb2bh24b24b2', content: "All cats meow 'mern!'" };
+const post = { name: 'Prashant', title: 'Hello Mern', slug: 'hello-mern', cuid: 'f34gb2bh24b24b2', content: "All cats meow 'mern!'", user: '123' };
+const currentUser = { id: '123', name: 'Prashant' };
 const props = {
   post,
+  currentUser,
   onDelete: () => {},
 };
 
@@ -34,7 +36,7 @@ test('has correct props', t => {
 test('calls onDelete', t => {
   const onDelete = sinon.spy();
   const wrapper = shallow(
-    <PostListItem post={post} onDelete={onDelete} />
+    <PostListItem post={post} onDelete={onDelete} currentUser={currentUser} />
   );
 
   wrapper.find('.btn-danger').first().simulate('click');

@@ -15,7 +15,9 @@ function PostListItem(props) {
       </h3>
       <p className={styles['author-name']}>By {props.post.name}</p>
       <p className={styles['post-desc']}>{props.post.content}</p>
-      <p><button type="button" className="btn btn-sm btn-danger" onClick={props.onDelete}>Delete Post</button></p>
+      {props.post.user === props.currentUser.id ?
+        <p><button type="button" className="btn btn-sm btn-danger" onClick={props.onDelete}>Delete Post</button></p>
+        : null}
     </div>
   );
 }
@@ -27,8 +29,10 @@ PostListItem.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired,
 };
 
 export default PostListItem;
