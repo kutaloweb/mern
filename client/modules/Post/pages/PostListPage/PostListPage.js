@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // Import Components
 import PostList from '../../components/PostList';
 import PostCreateWidget from '../../components/PostCreateWidget/PostCreateWidget';
+import { Button, Modal } from 'react-bootstrap';
 
 // Import Actions
 import { addPostRequest, fetchPosts, deletePostRequest } from '../../PostActions';
@@ -14,14 +15,33 @@ import { getShowAddPost } from '../../../App/AppReducer';
 import { getPosts } from '../../PostReducer';
 
 class PostListPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDeleteModal: false,
+      selectedPost: null,
+    };
+  }
   componentDidMount() {
     this.props.dispatch(fetchPosts());
   }
 
-  handleDeletePost = post => {
-    if (confirm('Do you want to delete this post')) { // eslint-disable-line
-      this.props.dispatch(deletePostRequest(post));
-    }
+  handleSelectedPost = (post) => {
+    this.setState({ selectedPost: post });
+    this.handleShowDeleteModal();
+  };
+
+  handleCloseDeleteModal = () => {
+    this.setState({ showDeleteModal: false, selectedPost: null });
+  };
+
+  handleShowDeleteModal = () => {
+    this.setState({ showDeleteModal: true });
+  };
+
+  handleDeletePost = () => {
+    this.props.dispatch(deletePostRequest(this.state.selectedPost));
+    this.handleCloseDeleteModal();
   };
 
   handleAddPost = (title, content) => {
@@ -29,10 +49,27 @@ class PostListPage extends Component {
   };
 
   render() {
+    const { showDeleteModal } = this.state;
     return (
       <div>
         <PostCreateWidget addPost={this.handleAddPost} showAddPost={this.props.showAddPost} />
-        <PostList handleDeletePost={this.handleDeletePost} posts={this.props.posts} />
+
+        <PostList handleDeletePost={this.handleSelectedPost} posts={this.props.posts} />
+
+        <Modal show={showDeleteModal} onHide={this.handleCloseDeleteModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Confirm</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleCloseDeleteModal}>
+              Close
+            </Button>
+            <Button variant="danger" onClick={this.handleDeletePost}>
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
