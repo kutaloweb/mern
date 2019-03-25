@@ -8,11 +8,14 @@ import styles from './Header.css';
 // Import Components
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
+// Import Images
+import logo from '../../../../assets/images/react-logo.png';
+
 export function Header(props, context) {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" className={styles.header}>
-        <Link className="navbar-brand" to="/">MERN Starter</Link>
+        <Link className="navbar-brand" to="/"><img src={logo} alt="Logo" height="40px" /> MERN Starter</Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" />
