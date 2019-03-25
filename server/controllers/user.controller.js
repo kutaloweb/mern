@@ -2,6 +2,7 @@ import User from '../models/user';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import sanitizeHtml from 'sanitize-html';
+import serverConfig from '../config';
 
 // Load Input Validation
 const validateRegisterInput = require('../validation/register');
@@ -82,7 +83,7 @@ export function login(req, res) {
               avatar: user.avatar,
             };
 
-            jwt.sign(payload, 'secret', {
+            jwt.sign(payload, serverConfig.secretOrKey, {
               expiresIn: 360000,
             }, (err, token) => {
               if (err) res.send(err);
