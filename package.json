@@ -1,5 +1,5 @@
 {
-  "name": "@kutaloweb/advanced-mern-starter",
+  "name": "@kutaloweb/mern",
   "version": "0.1.0-alpha.0",
   "description": "Boilerplate project for building Isomorphic apps using React and Redux",
   "scripts": {
@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kutaloweb/advanced-mern-starter.git"
+    "url": "git+https://github.com/kutaloweb/mern.git"
   },
   "bugs": {
-    "url": "https://github.com/kutaloweb/advanced-mern-starter/issues"
+    "url": "https://github.com/kutaloweb/mern/issues"
   },
-  "homepage": "https://github.com/kutaloweb/advanced-mern-starter#readme",
+  "homepage": "https://github.com/kutaloweb/mern#readme",
   "author": "Alexey Kutalo <kutalo84@gmail.com>",
   "license": "MIT",
   "dependencies": {
