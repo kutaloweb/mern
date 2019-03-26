@@ -67,9 +67,9 @@ app.use(compression());
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
+app.use('/favicon.ico', Express.static(path.resolve(__dirname, '../client/assets/favicon.ico')));
 app.use('/api', posts);
 app.use('/api/users', user);
-
 
 // Authentication
 app.use(passport.initialize());
@@ -96,7 +96,7 @@ const renderFullPage = (html, initialState) => {
 
         ${isProdMode ? `<link rel='stylesheet' href='${assetsManifest['/app.css']}' />` : ''}
         <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'/>
-        <link rel="icon" type="image/png" href="http://mern.io/images/mern-logo.png">
+        <link rel="icon" href="/favicon.ico">
       </head>
       <body>
         <div id="root">${process.env.NODE_ENV === 'production' ? html : `<div>${html}</div>`}</div>
