@@ -1,6 +1,6 @@
 import Post from '../models/post';
 import cuid from 'cuid';
-import slug from 'limax';
+import slug from 'slugify';
 import sanitizeHtml from 'sanitize-html';
 
 // Validation
@@ -42,7 +42,7 @@ export function addPost(req, res) {
   newPost.title = sanitizeHtml(newPost.title);
   newPost.content = sanitizeHtml(newPost.content);
 
-  newPost.slug = slug(newPost.title.toLowerCase(), { lowercase: true });
+  newPost.slug = slug(newPost.title.toLowerCase(), { lower: true });
   newPost.cuid = cuid();
   newPost.user = req.user.id;
   newPost.name = req.user.name;
