@@ -15,7 +15,7 @@ export function Header(props, context) {
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" className={styles.header}>
-        <Link className="navbar-brand" to="/"><img src={logo} alt="Logo" height="40px" /> MERN Starter</Link>
+        <Link className="navbar-brand" to="/"><img src={logo} alt="Logo" height="35px" /> MERN Starter</Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" />

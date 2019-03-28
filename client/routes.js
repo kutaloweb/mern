@@ -20,6 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/Post/pages/PostDetailPage/PostDetailPage');
   require('./modules/Auth/RegisterForm');
   require('./modules/Auth/LoginForm');
+  require('./modules/App/NotFound');
 }
 
 // react-router setup with code-splitting
@@ -54,6 +55,14 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/Auth/LoginForm').default);
+        });
+      }}
+    />
+    <Route
+      path="*" exact
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/App/NotFound').default);
         });
       }}
     />

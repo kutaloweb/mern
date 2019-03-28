@@ -133,7 +133,7 @@ app.use((req, res, next) => {
     }
 
     if (!renderProps) {
-      return next();
+      return res.status(404).end('Not found!');
     }
 
     const store = configureStore();

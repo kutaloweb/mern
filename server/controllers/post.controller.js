@@ -62,6 +62,9 @@ export function addPost(req, res) {
  */
 export function getPost(req, res) {
   Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+    if (!post) {
+      return res.status(404).json(err);
+    }
     if (err) {
       res.status(500).send(err);
     }
