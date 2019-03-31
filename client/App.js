@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import jwtDecode from 'jwt-decode';
 import { setCurrentUser, logout } from './modules/Auth/AuthActions';
+import { clearCurrentProfile } from './modules/Profile/ProfileActions';
 
 // Import Routes
 import routes from './routes';
@@ -24,6 +25,7 @@ export default function App(props) {
     props.store.dispatch(setCurrentUser(decoded));
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
+      props.store.dispatch(clearCurrentProfile());
       props.store.dispatch(logout());
       window.location.href = '/login';
     }

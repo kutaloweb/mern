@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer';
 // Import Actions
 import { toggleAddPost } from './AppActions';
 import { logout } from '../Auth/AuthActions';
+import { clearCurrentProfile } from '../Profile/ProfileActions';
 
 export class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export class App extends Component {
   }
 
   handleLogout = () => {
+    this.props.dispatch(clearCurrentProfile());
     this.props.dispatch(logout());
   };
 
