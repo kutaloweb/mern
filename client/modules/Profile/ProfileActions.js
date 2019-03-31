@@ -5,14 +5,14 @@ export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 
 export function getCurrentProfile() {
   return (dispatch) => {
-    return callApi('profile')
+    return callApi('profile', 'get', undefined, true)
       .then(res =>
         dispatch({
           type: GET_PROFILE,
           payload: res.profile,
         })
       )
-      .catch(() =>
+      .catch(err =>
         dispatch({
           type: GET_PROFILE,
           payload: {},
