@@ -6,12 +6,6 @@ import sanitizeHtml from 'sanitize-html';
 // Validation
 const validatePostInput = require('../validation/post');
 
-/**
- * Get all posts
- * @param req
- * @param res
- * @returns void
- */
 export function getPosts(req, res) {
   Post.find().sort('-dateAdded').exec((err, posts) => {
     if (err) {
@@ -21,12 +15,6 @@ export function getPosts(req, res) {
   });
 }
 
-/**
- * Save a post
- * @param req
- * @param res
- * @returns void
- */
 export function addPost(req, res) {
   const { errors, isValid } = validatePostInput(req.body.post);
   // Check Validation
@@ -54,12 +42,6 @@ export function addPost(req, res) {
   });
 }
 
-/**
- * Get a single post
- * @param req
- * @param res
- * @returns void
- */
 export function getPost(req, res) {
   Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
     if (!post) {
@@ -72,12 +54,6 @@ export function getPost(req, res) {
   });
 }
 
-/**
- * Delete a post
- * @param req
- * @param res
- * @returns void
- */
 export function deletePost(req, res) {
   Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
     if (err) {

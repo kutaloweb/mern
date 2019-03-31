@@ -1,11 +1,5 @@
 import Profile from '../models/profile';
 
-/**
- * Get a profile
- * @param req
- * @param res
- * @returns void
- */
 export function getProfile(req, res) {
   const errors = {};
   Profile.findOne({ user: req.user.id })
