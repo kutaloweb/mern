@@ -22,6 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('./modules/Auth/pages/LoginForm');
   require('./modules/Profile/pages/Dashboard');
   require('./modules/Profile/pages/CreateProfile');
+  require('./modules/Profile/pages/EditProfile');
   require('./modules/App/pages/NotFound');
 }
 
@@ -73,6 +74,14 @@ export default (
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
           cb(null, require('./modules/Profile/pages/CreateProfile').default);
+        });
+      }}
+    />
+    <Route
+      path="/dashboard/profile/edit"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Profile/pages/EditProfile').default);
         });
       }}
     />
