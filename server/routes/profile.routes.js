@@ -7,4 +7,8 @@ const router = new Router();
 // Get profile
 router.route('/profile').get(passport.authenticate('jwt', { session: false }), ProfileController.getProfile);
 
+// Create profile
+router.route('/profile').post(passport.authenticate('jwt', { session: false }), ProfileController.createProfile);
+
+
 export default router;

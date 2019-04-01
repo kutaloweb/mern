@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCurrentProfile } from '../ProfileActions';
+import { Link } from 'react-router';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -29,6 +30,9 @@ class Dashboard extends Component {
         <div>
           <p className="lead text-muted">Welcome, {user.name}</p>
           <p className="lead text-muted">You have not yet setup a profile, please add some info</p>
+          <Link to="/dashboard/profile/create" className="btn btn-lg btn-success">
+            Create Profile
+          </Link>
         </div>
       );
     }

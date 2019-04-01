@@ -1,4 +1,4 @@
-import { GET_PROFILE, CLEAR_CURRENT_PROFILE } from './ProfileActions';
+import { GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_ERRORS } from './ProfileActions';
 
 const initialState = {
   profile: null,
@@ -17,6 +17,12 @@ const ProfileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: null,
+      };
+
+    case GET_ERRORS:
+      return {
+        ...state,
+        errors: action.payload,
       };
 
     default:
