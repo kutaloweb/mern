@@ -1,4 +1,5 @@
 import Profile from '../models/profile';
+import User from '../models/user';
 
 // Validation
 const validateProfileInput = require('../validation/profile');
@@ -49,4 +50,12 @@ export function createProfile(req, res) {
         new Profile(profileFields).save().then(() => res.json(profile));
       }
     });
+}
+
+export function deleteProfile(req, res) {
+  Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+    User.findOneAndRemove({ _id: req.user.id }).then(() =>
+      res.status(200).send({ message: 'Account deleted' })
+    );
+  });
 }

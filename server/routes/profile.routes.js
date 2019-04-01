@@ -10,5 +10,7 @@ router.route('/profile').get(passport.authenticate('jwt', { session: false }), P
 // Create profile
 router.route('/profile').post(passport.authenticate('jwt', { session: false }), ProfileController.createProfile);
 
+// Delete profile
+router.route('/profile').delete(passport.authenticate('jwt', { session: false }), ProfileController.deleteProfile);
 
 export default router;

@@ -3,6 +3,7 @@ import callApi from '../../util/apiCaller';
 export const GET_PROFILE = 'GET_PROFILE';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 export const GET_ERRORS = 'GET_ERRORS';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 export function getCurrentProfile() {
   return (dispatch) => {
@@ -38,5 +39,23 @@ export function createProfile(profileData, router) {
 export function clearCurrentProfile() {
   return {
     type: CLEAR_CURRENT_PROFILE,
+  };
+}
+
+export function deleteAccount() {
+  return (dispatch) => {
+    return callApi('profile', 'delete', undefined, true)
+      .then(res =>
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {},
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
   };
 }
