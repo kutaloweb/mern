@@ -24,7 +24,7 @@ export class App extends Component {
 
   handleLogout = () => {
     this.props.dispatch(clearCurrentProfile());
-    this.props.dispatch(logout());
+    this.props.dispatch(logout(this.props.router));
   };
 
   toggleAddPostSection = () => {
@@ -69,6 +69,7 @@ App.propTypes = {
   children: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  router: PropTypes.object,
 };
 
 const mapStateToProps = state => ({

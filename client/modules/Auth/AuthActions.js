@@ -12,12 +12,12 @@ export function clearErrors() {
   };
 }
 
-export const setCurrentUser = decoded => {
+export function setCurrentUser(decoded) {
   return {
     type: SET_CURRENT_USER,
     payload: decoded,
   };
-};
+}
 
 export function registerUser(userData, router) {
   return (dispatch) => {
@@ -53,8 +53,11 @@ export function loginUser(userData) {
   };
 }
 
-export const logout = () => dispatch => {
-  localStorage.removeItem('jwtToken');
-  dispatch(setCurrentUser({}));
-  dispatch(closeAddPost());
-};
+export function logout(router) {
+  return (dispatch) => {
+    localStorage.removeItem('jwtToken');
+    dispatch(setCurrentUser({}));
+    dispatch(closeAddPost());
+    router.push('/login');
+  };
+}
