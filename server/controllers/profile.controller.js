@@ -33,8 +33,8 @@ export function createProfile(req, res) {
   const profileFields = {};
   profileFields.user = req.user.id;
   profileFields.headline = req.body.headline;
-  if (req.body.location) profileFields.location = req.body.location;
-  if (req.body.bio) profileFields.bio = req.body.bio;
+  profileFields.location = req.body.location;
+  profileFields.bio = req.body.bio;
 
   Profile.findOne({ user: req.user.id })
     .then(profile => {
