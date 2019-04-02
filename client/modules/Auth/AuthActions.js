@@ -2,11 +2,9 @@ import jwtDecode from 'jwt-decode';
 import callApi from '../../util/apiCaller';
 import { closeAddPost } from '../App/AppActions';
 
-// Export Constants
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_ERRORS = 'GET_ERRORS';
 
-// Set logged in user
 export const setCurrentUser = decoded => {
   return {
     type: SET_CURRENT_USER,

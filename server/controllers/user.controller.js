@@ -8,11 +8,6 @@ import serverConfig from '../config';
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
-/**
- * Register user
- * @param req
- * @param res
- */
 export function register(req, res) {
   const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -48,11 +43,6 @@ export function register(req, res) {
   });
 }
 
-/**
- * Login
- * @param req
- * @param res
- */
 export function login(req, res) {
   const {
     errors,

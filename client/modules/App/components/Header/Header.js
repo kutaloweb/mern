@@ -26,14 +26,19 @@ export function Header(props, context) {
           }
           {
             props.isAuthenticated
-              ? <Nav>
-                {
-                  <NavItem>
-                    <Nav.Link onClick={props.logout}>Logout</Nav.Link>
-                  </NavItem>
-                }
+              ?
+              <Nav>
+                <NavItem>
+                  <Link className="nav-link" to="/dashboard" >
+                    Dashboard
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Nav.Link onClick={props.logout}>Logout</Nav.Link>
+                </NavItem>
               </Nav>
-              : <Nav>
+              :
+              <Nav>
                 <NavItem>
                   <Link className="nav-link" to="/register" >
                     Register

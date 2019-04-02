@@ -1,7 +1,5 @@
-// Import Actions
 import { TOGGLE_ADD_POST, CLOSE_ADD_POST } from './AppActions';
 
-// Initial State
 const initialState = {
   showAddPost: false,
 };
@@ -23,10 +21,6 @@ const AppReducer = (state = initialState, action) => {
   }
 };
 
-/* Selectors */
-
-// Get showAddPost
 export const getShowAddPost = state => state.app.showAddPost;
 
-// Export Reducer
 export default AppReducer;

@@ -18,9 +18,13 @@ if (process.env.NODE_ENV !== 'production') {
   // Require async routes only in development for react-hot-reloader to work.
   require('./modules/Post/pages/PostListPage/PostListPage');
   require('./modules/Post/pages/PostDetailPage/PostDetailPage');
-  require('./modules/Auth/RegisterForm');
-  require('./modules/Auth/LoginForm');
-  require('./modules/App/NotFound');
+  require('./modules/Auth/pages/RegisterForm');
+  require('./modules/Auth/pages/LoginForm');
+  require('./modules/Profile/pages/Dashboard');
+  require('./modules/Profile/pages/CreateProfile');
+  require('./modules/Profile/pages/EditProfile');
+  require('./modules/Profile/pages/ShowProfile');
+  require('./modules/App/pages/NotFound');
 }
 
 // react-router setup with code-splitting
@@ -46,7 +50,7 @@ export default (
       path="/register"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/Auth/RegisterForm').default);
+          cb(null, require('./modules/Auth/pages/RegisterForm').default);
         });
       }}
     />
@@ -54,7 +58,39 @@ export default (
       path="/login"
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/Auth/LoginForm').default);
+          cb(null, require('./modules/Auth/pages/LoginForm').default);
+        });
+      }}
+    />
+    <Route
+      path="/dashboard"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Profile/pages/Dashboard').default);
+        });
+      }}
+    />
+    <Route
+      path="/dashboard/profile/create"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Profile/pages/CreateProfile').default);
+        });
+      }}
+    />
+    <Route
+      path="/dashboard/profile/edit"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Profile/pages/EditProfile').default);
+        });
+      }}
+    />
+    <Route
+      path="/profile"
+      getComponent={(nextState, cb) => {
+        require.ensure([], require => {
+          cb(null, require('./modules/Profile/pages/ShowProfile').default);
         });
       }}
     />
@@ -62,7 +98,7 @@ export default (
       path="*" exact
       getComponent={(nextState, cb) => {
         require.ensure([], require => {
-          cb(null, require('./modules/App/NotFound').default);
+          cb(null, require('./modules/App/pages/NotFound').default);
         });
       }}
     />

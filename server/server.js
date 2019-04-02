@@ -47,6 +47,7 @@ import routes from '../client/routes';
 import { fetchComponentData } from './util/fetchData';
 import posts from './routes/post.routes';
 import user from './routes/user.routes';
+import profile from './routes/profile.routes';
 import serverConfig from './config';
 
 // Set native promises as mongoose promise
@@ -69,6 +70,7 @@ app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 app.use(Express.static(path.resolve(__dirname, '../dist/client')));
 app.use('/favicon.ico', Express.static(path.resolve(__dirname, '../client/assets/favicon.ico')));
 app.use('/api', posts);
+app.use('/api', profile);
 app.use('/api/users', user);
 
 // Authentication
