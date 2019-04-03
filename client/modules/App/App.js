@@ -54,6 +54,7 @@ export class App extends Component {
           logout={this.handleLogout}
           isAuthenticated={this.props.isAuthenticated}
           userName={this.props.userName}
+          showEditProfile={this.props.showEditProfile}
         />
         <br />
         <div className="container">
@@ -70,6 +71,7 @@ App.propTypes = {
   children: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  showEditProfile: PropTypes.bool,
   userName: PropTypes.string,
   router: PropTypes.object,
 };
@@ -77,6 +79,7 @@ App.propTypes = {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   userName: state.auth.user.name,
+  showEditProfile: state.profile.profile !== null && Object.keys(state.profile.profile).length > 0,
 });
 
 export default connect(mapStateToProps)(App);

@@ -1,6 +1,6 @@
 {
   "name": "@kutaloweb/mern",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Boilerplate project for building Isomorphic apps using React and Redux",
   "scripts": {
     "test": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/mern-test node_modules/.bin/nyc node node_modules/ava/cli.js",
