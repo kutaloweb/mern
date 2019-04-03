@@ -46,15 +46,27 @@ export function addPosts(posts) {
 
 export function fetchPosts() {
   return (dispatch) => {
-    return callApi('posts').then(res => {
-      dispatch(addPosts(res.posts));
-    });
+    return callApi('posts')
+      .then(res => dispatch(addPosts(res.posts)))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
   };
 }
 
 export function fetchPost(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`).then(res => dispatch(addPost(res.post)));
+    return callApi(`posts/${cuid}`)
+      .then(res => dispatch(addPost(res.post)))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
   };
 }
 
@@ -67,6 +79,39 @@ export function deletePost(cuid) {
 
 export function deletePostRequest(cuid) {
   return (dispatch) => {
-    return callApi(`posts/${cuid}`, 'delete', {}, true).then(() => dispatch(deletePost(cuid)));
+    return callApi(`posts/${cuid}`, 'delete', {}, true)
+      .then(() => dispatch(deletePost(cuid)))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
+  };
+}
+
+export function addLike(cuid) {
+  return (dispatch) => {
+    return callApi(`posts/like/${cuid}`, 'post', {}, true)
+      .then(() => dispatch(fetchPosts()))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
+  };
+}
+
+export function removeLike(cuid) {
+  return (dispatch) => {
+    return callApi(`posts/unlike/${cuid}`, 'post', {}, true)
+      .then(() => dispatch(fetchPosts()))
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err,
+        })
+      );
   };
 }
