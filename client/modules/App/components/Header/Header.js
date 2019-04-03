@@ -29,16 +29,14 @@ export function Header(props, context) {
               ?
               <Nav>
                 <NavDropdown alignRight title={props.userName} id="basic-nav-dropdown">
-                  <NavDropdown.Item as={Link} to="/dashboard">
-                    Dashboard
-                  </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/dashboard/profile/edit">
-                    Edit Profile
-                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/dashboard">Dashboard</NavDropdown.Item>
+                  {
+                    props.showEditProfile
+                    ? <NavDropdown.Item as={Link} to="/dashboard/profile/edit">Edit Profile</NavDropdown.Item>
+                    : null
+                  }
                   <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={props.logout}>
-                    Logout
-                  </NavDropdown.Item>
+                  <NavDropdown.Item onClick={props.logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               :
@@ -69,6 +67,7 @@ Header.propTypes = {
   toggleAddPost: PropTypes.func,
   logout: PropTypes.func,
   isAuthenticated: PropTypes.bool,
+  showEditProfile: PropTypes.bool,
   userName: PropTypes.string,
 };
 
