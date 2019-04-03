@@ -4,6 +4,13 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 export const GET_ERRORS = 'GET_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+
+export function clearErrors() {
+  return {
+    type: CLEAR_ERRORS,
+  };
+}
 
 export function getCurrentProfile() {
   return (dispatch) => {
@@ -25,6 +32,7 @@ export function getCurrentProfile() {
 
 export function createProfile(profileData, router) {
   return (dispatch) => {
+    dispatch(clearErrors());
     return callApi('profile', 'post', profileData, true)
       .then(res => router.push('/dashboard'))
       .catch(err =>

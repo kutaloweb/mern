@@ -1,4 +1,4 @@
-import { GET_ERRORS, SET_CURRENT_USER } from './AuthActions';
+import { GET_ERRORS, SET_CURRENT_USER, CLEAR_ERRORS } from './AuthActions';
 import isEmpty from '../../../server/validation/is-empty';
 
 const initialState = {
@@ -20,6 +20,13 @@ export default function (state = initialState, action) {
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload,
       };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {},
+      };
+
     default:
       return state;
   }

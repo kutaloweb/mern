@@ -1,5 +1,10 @@
 # MERN
 
+<p align="center">
+<a href="https://www.npmjs.com/package/@kutaloweb/mern"><img src="https://img.shields.io/npm/v/@kutaloweb/mern.svg" alt="Latest Stable Version"></a>
+</p>
+
+
 MERN is an extended [Hashnode's](http://mern.io) scaffolding tool which makes it easy to build universal apps using Mongo, Express, React and NodeJS. It minimises the setup time and gets you up to speed using proven technologies.
 
 Try it out here: https://mern.kutaloweb.rocks

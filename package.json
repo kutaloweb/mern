@@ -1,6 +1,6 @@
 {
   "name": "@kutaloweb/mern",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Boilerplate project for building Isomorphic apps using React and Redux",
   "scripts": {
     "test": "cross-env NODE_ENV=test PORT=8080 MONGO_URL=mongodb://localhost:27017/mern-test node_modules/.bin/nyc node node_modules/ava/cli.js",
@@ -31,6 +31,11 @@
   "author": "Alexey Kutalo <kutalo84@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-brands-svg-icons": "^5.8.1",
+    "@fortawesome/free-regular-svg-icons": "^5.8.1",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "babel-core": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.15.1",

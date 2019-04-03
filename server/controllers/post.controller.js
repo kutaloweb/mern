@@ -1,4 +1,5 @@
 import Post from '../models/post';
+import Profile from '../models/profile';
 import cuid from 'cuid';
 import slug from 'slugify';
 import sanitizeHtml from 'sanitize-html';
@@ -66,5 +67,45 @@ export function deletePost(req, res) {
     post.remove(() => {
       res.status(200).send({ message: 'Post deleted', post });
     });
+  });
+}
+
+export function likePost(req, res) {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findOne({ cuid: req.params.cuid })
+      .then(post => {
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          return res.status(403).json({ alreadyLiked: 'User already liked this post' });
+        }
+        if (post.unlikes.filter(unlike => unlike.user.toString() === req.user.id).length > 0) {
+          const removeIndex = post.unlikes
+            .map(item => item.user.toString())
+            .indexOf(req.user.id);
+          post.unlikes.splice(removeIndex, 1);
+        }
+        post.likes.unshift({ user: req.user.id });
+        post.save().then(p => res.json(p));
+      })
+      .catch(err => res.status(404).json({ postNotFound: 'No post found' }));
+  });
+}
+
+export function unlikePost(req, res) {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findOne({ cuid: req.params.cuid })
+      .then(post => {
+        if (post.unlikes.filter(unlike => unlike.user.toString() === req.user.id).length > 0) {
+          return res.status(403).json({ alreadyUnliked: 'User already unliked this post' });
+        }
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+          const removeIndex = post.likes
+            .map(item => item.user.toString())
+            .indexOf(req.user.id);
+          post.likes.splice(removeIndex, 1);
+        }
+        post.unlikes.unshift({ user: req.user.id });
+        post.save().then(p => res.json(p));
+      })
+      .catch(err => res.status(404).json({ postNotFound: 'No post found' }));
   });
 }

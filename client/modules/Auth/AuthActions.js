@@ -4,16 +4,24 @@ import { closeAddPost } from '../App/AppActions';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_ERRORS = 'GET_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-export const setCurrentUser = decoded => {
+export function clearErrors() {
+  return {
+    type: CLEAR_ERRORS,
+  };
+}
+
+export function setCurrentUser(decoded) {
   return {
     type: SET_CURRENT_USER,
     payload: decoded,
   };
-};
+}
 
 export function registerUser(userData, router) {
   return (dispatch) => {
+    dispatch(clearErrors());
     return callApi('users/register', 'post', userData)
       .then(() => router.push('/login'))
       .catch(err =>
@@ -27,6 +35,7 @@ export function registerUser(userData, router) {
 
 export function loginUser(userData) {
   return (dispatch) => {
+    dispatch(clearErrors());
     return callApi('users/login', 'post', userData, true)
       .then(res => {
         const { token } = res;
@@ -44,8 +53,11 @@ export function loginUser(userData) {
   };
 }
 
-export const logout = () => dispatch => {
-  localStorage.removeItem('jwtToken');
-  dispatch(setCurrentUser({}));
-  dispatch(closeAddPost());
-};
+export function logout(router) {
+  return (dispatch) => {
+    localStorage.removeItem('jwtToken');
+    dispatch(setCurrentUser({}));
+    dispatch(closeAddPost());
+    router.push('/login');
+  };
+}

@@ -30,6 +30,8 @@ PostListItem.propTypes = {
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
+    likes: PropTypes.array.isRequired,
+    unlikes: PropTypes.array.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired,
