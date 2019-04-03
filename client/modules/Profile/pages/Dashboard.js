@@ -45,14 +45,9 @@ class Dashboard extends Component {
       dashboardContent = (
         <div>
           <p className="lead text-muted">Welcome, <Link to="/profile">{user.name}</Link></p>
-          <div className="btn-group mb-4" role="group">
-            <Link to="/dashboard/profile/edit" className="btn btn-success">
-              Edit Profile
-            </Link>
-            <button onClick={this.handleShowDeleteModal} className="btn btn-danger">
-              Delete My Account
-            </button>
-          </div>
+          <button onClick={this.handleShowDeleteModal} className="btn btn-sm btn-danger">
+            Delete My Account
+          </button>
         </div>
       );
     } else if (profile !== null) {
@@ -60,7 +55,7 @@ class Dashboard extends Component {
         <div>
           <p className="lead text-muted">Welcome, {user.name}</p>
           <p className="lead text-muted">You have not yet setup a profile, please add some info</p>
-          <Link to="/dashboard/profile/create" className="btn btn-lg btn-success">
+          <Link to="/dashboard/profile/create" className="btn btn-sm btn-success">
             Create Profile
           </Link>
         </div>

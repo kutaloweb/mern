@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import styles from './Header.css';
 
 // Import Components
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
 
 // Import Images
 import logo from '../../../../assets/images/react-logo.png';
@@ -28,14 +28,18 @@ export function Header(props, context) {
             props.isAuthenticated
               ?
               <Nav>
-                <NavItem>
-                  <Link className="nav-link" to="/dashboard" >
+                <NavDropdown alignRight title={props.userName} id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/dashboard">
                     Dashboard
-                  </Link>
-                </NavItem>
-                <NavItem>
-                  <Nav.Link onClick={props.logout}>Logout</Nav.Link>
-                </NavItem>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/dashboard/profile/edit">
+                    Edit Profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={props.logout}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               </Nav>
               :
               <Nav>
@@ -65,6 +69,7 @@ Header.propTypes = {
   toggleAddPost: PropTypes.func,
   logout: PropTypes.func,
   isAuthenticated: PropTypes.bool,
+  userName: PropTypes.string,
 };
 
 export default Header;
