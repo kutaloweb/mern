@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import PostListItem from '../../components/PostListItem/PostListItem';
 import { shallow, mount } from 'enzyme';
 
-const post = { name: 'Prashant', title: 'Hello Mern', slug: 'hello-mern', cuid: 'f34gb2bh24b24b2', content: "All cats meow 'mern!'", user: '123' };
+const post = { name: 'Prashant', title: 'Hello Mern', slug: 'hello-mern', cuid: 'f34gb2bh24b24b2', content: "All cats meow 'mern!'", user: '123', likes: [], unlikes: [] };
 const currentUser = { id: '123', name: 'Prashant' };
 const props = {
   post,
