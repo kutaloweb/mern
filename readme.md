@@ -5,9 +5,7 @@
 </p>
 
 
-MERN is an extended [Hashnode's](http://mern.io) scaffolding tool which makes it easy to build universal apps using Mongo, Express, React and NodeJS. It minimises the setup time and gets you up to speed using proven technologies.
-
-Try it out here: https://mern.kutaloweb.rocks
+MERN is an extended [Hashnode's](https://github.com/Hashnode/mern-starter) scaffolding tool which makes it easy to build universal apps using Mongo, Express, React and NodeJS. It minimises the setup time and gets you up to speed using proven technologies.
 
 ## Getting Started
 
@@ -44,7 +42,7 @@ npm run start
 
 ### Deploy
 
-Run Compose to start and run your production app if you are using Docker 
+Run Compose to start and run your production app if you are using Docker
 
 ```
 docker-compose -f docker-compose-production.yml up -d
